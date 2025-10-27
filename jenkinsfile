@@ -18,6 +18,17 @@ pipeline {
                 }
             }
         }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying JAR to run on port 8083...'
+                dir("FirstAWS/target") {
+                    // Start the JAR in the background using 'start' and 'javaw'
+                    // This command starts the JAR, releases the Jenkins process,
+                    // and allows the job to complete successfully.
+                    bat 'start javaw -jar FirstAWS-1.0.jar'
+                }
+            }
+        }
      }
     
 }
